@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<!--Import materialize.css-->
+<link type="text/css" rel="stylesheet" href="css/materialize.min.css"
+	media="screen,projection" />
+	<link type="text/css" rel="stylesheet" href="css/css.css">
+	
+    <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+	
+	<div class="row">
+		<div class="sidebar col s12" id="sidebar">
+			<ul class="sidebar-nav" id="sidebar-nav">
+               <span id="sungrow">SunGrow</span>
+				<li>
+					<a href="file:///C:/Users/Rafael%20Junior/Desktop/Sungrow-master/src/main/webapp/home.html">Home</i></a>
+				</li>
+				<li>
+					<a href="#">Dashboard<i class="fa fa-home menu-icon fa-2x" aria-hidden="true"></i></a>
+				</li>
+				<li>
+					<a href="file:///C:/Users/Rafael%20Junior/Desktop/Sungrow-master/src/main/webapp/novoCadastro.html">Novo Cadastro<i class="fa fa-download menu-icon fa-2x" aria-hidden="true"></i></a>
+				</li>
+				<li>
+					<a href="https://sungrow.com.br" target="_blank">Site<i class="fa fa-sign-out menu-icon fa-2x" aria-hidden="true"></i></a>
+				</li>
+            </ul>
+            <footer  id="footer">
+                <span>2018 Copyright SunGrow</span>
+            </footer>
+		</div>
+			<div class="col s9 right" id="card-dashboard">
+				<div class="card-panel z-depth-4 center" id="dashboard-card">
+                    <span id="dashboard">Dashboard</span>
+				</div>
+				<img src="img/logoS.jpeg" width="75" height="80" id="logo1">
+			</div>
+		<div class="col s9" id="card1">
+			<div class="col s1"></div>
+			<div class="col s4">
+				<h5 class="header center" id="titulo-card">Temperatura Água</h5>
+				<div class="card horizontal z-depth-4" id="temAgua">
+
+					
+					
+					<div class="card-image valign-wrapper">
+						<img src="img/therm1.png" width="110" height="100">
+					</div>
+					<div class="card-content ">
+						<h7 class="header center-align" id="ultimoValor">Ultimo Valor Registrado</h7>
+						<h3 id="tempAgua">29.9 <h3 id="icone">ºC</h3></h3>
+					</div>
+				</div>
+			</div>
+			<div class="col s1"></div>
+			<div class="col s4" id="card2">
+				<h5 class="header center" id="titulo-card">Temperatura Ambiente</h5>
+				<div class="card horizontal z-depth-4" id="temAmb">
+					
+					<div class="card-image valign-wrapper">
+						<i class="large material-icons">ac_unit</i>
+					</div>
+					
+					<div class="card-content">
+						<h7 class="header center-align" id="ultimoValor">Ultimo Valor Registrado</h7>
+						<h3 id="tempAmb" class="center">27<h3 id="icone1">%</h3></h3>
+					</div>
+				</div>
+		</div>
+
+	</div>
+
+    <div class="col s9" id="card3">
+			<div class="col s1"></div>
+			<div class="col s4">
+				<h5 class="header center" id="titulo-card">Humidade</h5>
+				<div class="card horizontal z-depth-4" id="humidade">
+
+					<div class="card-image valign-wrapper">
+						<img src="img/humi.png" width="110" height="100">
+					</div>
+					<div class="card-content">
+
+						<h7 class="header center-align" id="ultimoValor">Ultimo Valor Registrado</h7>
+						<h3 id="humidadefr" class="center">27<h3 id="icone1">%</h3></h3>
+					</div>
+				</div>
+
+			</div>
+			<div class="col s1"></div>
+			<div class="col s4" id="card4">
+				<h5 class="header center" id="titulo-card" id="ultimoValor">Luminosidade</h5>
+				<div class="card horizontal z-depth-4" id="Luminosidade">
+
+					<div class="card-image valign-wrapper">
+						<i class="large material-icons">wb_incandescent</i>
+					</div>
+					<div class="card-content">
+
+						<h7 class="header center-align" id="ultimoValor">Ultimo Valor Registrado</h7>
+						<h3 id="luminosidade" class="center">27<h3 id="icone1">%</h3></h3>
+					</div>
+				</div>
+	    	</div>
+	</div>
+<script>
+			window.onload = function() {
+
+				updateData1();
+
+				function addDataTemperaturaDaAgua(data) {
+					var x = data;
+					document.getElementById("tempAgua").innerHTML = x;
+
+					setTimeout(updateData2, 1000);
+
+				}
+
+				function addDataTemperaturaAmbiente(data) {
+
+					var x = data;
+					document.getElementById("tempAmb").innerHTML = x;
+
+					setTimeout(updateData3, 1000);
+
+				}
+				
+				function addDataHumidade(data) {
+					var x = data;
+					document.getElementById("humidadefr").innerHTML = x;
+
+					setTimeout(updateData4, 1000);
+
+				}
+
+				function addDataLuminosidade(data) {
+
+					var x = data;
+					document.getElementById("luminosidade").innerHTML = x;
+
+					setTimeout(updateData1, 1000);
+
+				}
+
+				function updateData1() {
+
+					$.getJSON("http://localhost:8080/json1/temperaturaagua",
+							addDataTemperaturaDaAgua);
+
+				}
+
+				function updateData2() {
+
+					$.getJSON(
+							"http://localhost:8080/json1/temperaturaambiente",
+							addDataTemperaturaAmbiente);
+				}
+				
+				function updateData3() {
+
+					$.getJSON("http://localhost:8080/json1/humidade",
+							addDataHumidade);
+
+				}
+
+				function updateData4() {
+
+					$.getJSON(
+							"http://localhost:8080/json1/luminosidade",
+							addDataLuminosidade);
+				}
+
+			}
+		</script>
+	
+	<!--JavaScript at end of body for optimized loading-->
+	<script type="text/javascript" src="../js/materialize.min.js"></script>
+	<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+		<script	src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+</body>
+</html>
